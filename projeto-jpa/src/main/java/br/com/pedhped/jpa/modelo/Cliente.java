@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,6 +17,12 @@ public class Cliente {
 	private String profissao;
 	private String endereco;
 	
+	/* @JoinColumn(unique = true) --> Garante que a chave estrangeira seja única.
+	 	Garante que o relacionamento  1:1 funcione.
+	 	
+	 	Esta anotação só tem efeito no momento da criação da tabela.
+	 */
+	@JoinColumn(unique = true)
 	@OneToOne
 	private Conta conta;
 	
