@@ -7,13 +7,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.pedhped.jpa.modelo.Conta;
 import br.com.pedhped.jpa.modelo.Movimentacao;
 
 /*
- 	A Jakarta Persistence Query Language é uma linguagem de consulta orientada 
- 	a objetos independente de plataforma definida como parte da especificação Jakarta Persistence. 
+ * Já quando trabalhamos com JPA, há uma linguagem chamada Java Persistence Query Language ou JPQL, 
+ * a qual é uma query de mais alto nível que nos permitirá escrevê-la 
+ * usando o nome de nossos objetos, classes e atributos, e não mais por meio dos nomes de tabelas e colunas.
  	JPQL é usado para fazer consultas em entidades armazenadas em um banco de dados relacional
  
  */
@@ -22,8 +24,7 @@ public class TesteJPQL {
 
 	public static void main(String[] args) {
 		
-		
-				
+						
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
 		EntityManager em = emf.createEntityManager();
 		
@@ -39,10 +40,15 @@ public class TesteJPQL {
 		Conta conta = new Conta();
 		conta.setId(1L);	 /*o 1 é o id na tabela no banco de dados*/
 		
-		String jpql = "select m from Movimentacao m where m.conta = :pConta";
+		//String jpql = "select m from Movimentacao m where m.conta = :pConta";
 		
-		Query query = (Query) em.createQuery(jpql);
+		/*usando order by*/
+		String jpql = "select m from Movimentacao m where m.conta = :pConta order by m.valor desc";
+		
+		/*TypedQuery: Define um tipo específico de query*/
+		TypedQuery<Movimentacao> query = em.createQuery(jpql, Movimentacao.class);
 		query.setParameter("pConta", conta);
+		
 		
 		List<Movimentacao> resultList = query.getResultList();
 		
@@ -55,3 +61,14 @@ public class TesteJPQL {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+

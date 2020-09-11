@@ -13,6 +13,12 @@ public class Categoria {
 	private Long id;
 	private String nome;
 	
+	@Override
+	public String toString() {
+		
+		return nome + " - " + id;
+	}
+	
 	/*@Deprecated: indica que este contrutor não será usado pelo desenvolvedor, 
 	Criado para atender a fins de infraestrutura do HIBERNATE*/
 	@Deprecated
