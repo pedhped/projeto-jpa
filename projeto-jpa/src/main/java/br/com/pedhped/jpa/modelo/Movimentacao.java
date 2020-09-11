@@ -2,6 +2,7 @@ package br.com.pedhped.jpa.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,7 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 /*NÃO ESQUEÇA DE PERSISTIR ESTA CLASSE MOVIMENTAÇÃO NO persistence.xml*/
@@ -30,7 +33,10 @@ public class Movimentacao {
 	private String descricao;
 	private BigDecimal valor;
 
-	
+	/*@ManyToMany: relacionamento N:N*/
+	@ManyToMany
+	private List<Categoria> categorias;
+
 	/*VINCULANDO Movimentacao.java a Conta.java
 		A JPA criará chaves primárias, chaves estrangeiras e etc.
 		
@@ -38,7 +44,7 @@ public class Movimentacao {
 	 */
 	@ManyToOne
 	private Conta conta; 
-	
+		
 	public Conta getConta() {
 		return conta;
 	}
@@ -63,16 +69,23 @@ public class Movimentacao {
 	public void setTipoMovimentacao(TipoMovimentacao tipoMovimentacao) {
 		this.tipoMovimentacao = tipoMovimentacao;
 	}
-	public LocalDateTime getDate() {
+	public LocalDateTime getData() {
 		return data;
 	}
-	public void setDate(LocalDateTime date) {
-		this.data = date;
+	public void setData(LocalDateTime data) {
+		this.data = data;
 	}
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}	
+	}
+	
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
 }

@@ -13,6 +13,8 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>br.com.pedhped.jpa.modelo.Conta</class>
         <class>br.com.pedhped.jpa.modelo.Movimentacao</class>
+        <class>br.com.pedhped.jpa.modelo.Categoria</class>
+        <class>br.com.pedhped.jpa.modelo.Cliente</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

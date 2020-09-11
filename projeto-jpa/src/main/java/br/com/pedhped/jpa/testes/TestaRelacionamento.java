@@ -22,7 +22,7 @@ public class TestaRelacionamento {
 		c1.setTitular("Pâmela Maria");
 		
 		Movimentacao mov1 = new Movimentacao();
-		mov1.setDate(LocalDateTime.now());
+		mov1.setData(LocalDateTime.now());
 		mov1.setDescricao("Churrascaria");
 		mov1.setValor(new BigDecimal(200.0));
 		mov1.setTipoMovimentacao(TipoMovimentacao.ENTRADA);
